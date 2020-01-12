@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="section-top">
+          <title>Контакты</title>
+            <meta content='номер тех.поддержки, контакты , схема проезда , адрес' name='keywords'/>
+            <meta content='Контакты: ☎ +7 333 000‒22‒32: Москва, ул. Гагарина, д. 12 Время работы: пн-вс 08:00-23:00' name='description'/>
+            <link href='http://site.ru/contacts.html' rel='canonical'/>
+            <link href='/' rel='icon' type='image/x-icon'/>
+    </div>
+    <div class="section section1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-center">
+                        Контакты
+                    </h1>
+
+                </div>
+                <body>
+
+
+                       <p>Спасибо за Ваш интерес!
+                       <p itemprop="telephone">Телефон: +7 333 000‒22‒32
+                       <p itemprop="faxNumber">Факс: +7 333 000‒22‒32
+                       <p>Email: <a href="mailto:support@site.ru" target="_blank" itemprop="email">apteka24@mail.ru</a> Ответ на письма приходят в течении 15 минут
+                       <p>Время работы:
+                           <time itemprop="openingHours" datetime="Mo-Fr 8:00-23:00">пн-чт 08:00-23:00, без перерывов и выходных</time>
+                       <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">Адрес: <span itemprop="postalCode">124412</span>, Россия, <span itemprop="addressLocality">Москва</span>, <span itemprop="streetAddress">улица Гагарина, дом 12</span></p>
+                       <a href="http://maps.yandex.ru/" target="_blank">Схема проезда на Яндекс/Google Картах</a>
+
+
+                </body>
+            </div>
+        </div>
+    </div>
+{% endblock %}
