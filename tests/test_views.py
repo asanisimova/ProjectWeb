@@ -3,7 +3,7 @@ import json
 from django.test import Client, TestCase
 from django.urls import reverse
 from rest_framework import status
-from landing.serializers import ProductListSerializer
+from landing.serializers import ProductSerializer
 
 from products.models import Product
 
@@ -21,7 +21,7 @@ class GetAllProductsTest(TestCase):
         response = client.get(reverse('product-list'))
         # get data from db
         products = Product.active.all()
-        serializer = ProductListSerializer(products, many=True)
+        serializer = ProductSerializer(products, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -46,10 +46,10 @@ class GetAllProductsTest(TestCase):
 class CreateNewPostTest(TestCase):
     def setUp(self):
         self.valid_payload = {
-            'name': 'ТераФлю лесные ягоды пакетики 20 шт.', 'price': 200,
+            'name': 'ТераФлю лесные ягоды пакетики 20 шт.', 'price': 200, 'is_active': True,
         }
         self.invalid_payload = {
-             'name': '', 'price': 200,
+             'name': '', 'price': 200, 'is_active': True,
         }
 
     def test_create_valid_single_post(self):
@@ -67,12 +67,12 @@ class CreateNewPostTest(TestCase):
 
 class UpdateSingleProductInBasketTest(TestCase):
     def setUp(self):
-        self.product = Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200)
+        self.product = Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200, is_active=True)
         self.valid_payload = {
-            'name': 'ТераФлю лесные ягоды пакетики 20 шт.', 'price': 200,
+            'name': 'ТераФлю лесные ягоды пакетики 20 шт.', 'price': 200, 'is_active': True,
         }
         self.invalid_payload = {
-            'name': '', 'price': 200,
+            'name': '', 'price': 200,  'is_active': True,
         }
 
     def test_valid_update_ProductInBasket(self):
@@ -94,7 +94,7 @@ class UpdateSingleProductInBasketTest(TestCase):
 
 class DeleteSingleProductTest(TestCase):
     def setUp(self):
-        self.product = Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200)
+        self.product = Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200, is_active=True)
 
     def test_valid_delete_product(self):
         response = client.delete(
