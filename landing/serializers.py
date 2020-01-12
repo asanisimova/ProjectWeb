@@ -8,13 +8,9 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['name', 'price',  'is_active']
 
-
-class ProductListSerializer(serializers.ModelSerializer):
-    descript = serializers.SerializerMethodField()
-
     def get_descript(self, product):
         return product.short_description()
 
     class Meta:
         model = Product
-        fields = ['name', 'price', 'descript', 'is_active']
+        fields = ['name', 'price', 'description', 'is_active']
