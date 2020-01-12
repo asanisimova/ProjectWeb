@@ -36,4 +36,4 @@ def contact(request):
 # #
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+    queryset = Product.objects.filter(category__is_active=True)
