@@ -29,8 +29,9 @@ class Product(models.Model):
 
     objects = ProductManager()
     active = ProductActiveManager()
-    # def short_description(self):
-    #     return truncatewords(self.description, 50)
+
+    def short_description(self):
+        return truncatewords(self.description, 50)
 
     def __str__(self):
         return "%s, %s" %(self.price, self.name)
