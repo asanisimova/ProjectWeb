@@ -3,28 +3,28 @@ import json
 from django.test import Client, TestCase
 from django.urls import reverse
 from rest_framework import status
-# from landing.serializers import ProductListSerializer
+from landing.serializers import ProductListSerializer
 
 from products.models import Product
 
 client = Client()
 
-#
-# class GetAllProductsTest(TestCase):
-#     def setUp(self):
-#         Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 10 шт.')
-#         Product.objects.create(name='ТераФлю лесные ягоды пакетики 20 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 20 шт.')
-#         Product.objects.create(name='ТераФлю лесные ягоды пакетики 30 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 30 шт.')
-#
-#     def test_get_all_products(self):
-#         # get API response
-#         response = client.get(reverse('product-list'))
-#         # get data from db
-#         products = Product.objects.all()
-#         serializer = ProductListSerializer(products, many=True)
-#         self.assertEqual(response.data, serializer.data)
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-#
+
+class GetAllProductsTest(TestCase):
+    def setUp(self):
+        Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 10 шт.')
+        Product.objects.create(name='ТераФлю лесные ягоды пакетики 20 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 20 шт.')
+        Product.objects.create(name='ТераФлю лесные ягоды пакетики 30 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 30 шт.')
+
+    def test_get_all_products(self):
+        # get API response
+        response = client.get(reverse('product-list'))
+        # get data from db
+        products = Product.active.all()
+        serializer = ProductListSerializer(products, many=True)
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 
 # class GetSingleProductTest(TestCase):
 #     def setUp(self):
