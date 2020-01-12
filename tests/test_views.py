@@ -12,9 +12,9 @@ client = Client()
 
 class GetAllProductsTest(TestCase):
     def setUp(self):
-        Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 10 шт.')
-        Product.objects.create(name='ТераФлю лесные ягоды пакетики 20 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 20 шт.')
-        Product.objects.create(name='ТераФлю лесные ягоды пакетики 30 шт.', price=200, created='Dec. 10, 2019, 6:40 p.m.', description='ТераФлю лесные ягоды пакетики 30 шт.')
+        Product.objects.create(name='ТераФлю лесные ягоды пакетики 10 шт.', price=200, description='ТераФлю лесные ягоды пакетики 10 шт.', is_active=True)
+        Product.objects.create(name='ТераФлю лесные ягоды пакетики 20 шт.', price=200, description='ТераФлю лесные ягоды пакетики 20 шт.', is_active=True)
+        Product.objects.create(name='ТераФлю лесные ягоды пакетики 30 шт.', price=200, description='ТераФлю лесные ягоды пакетики 30 шт.', is_active=False)
 
     def test_get_all_products(self):
         # get API response
