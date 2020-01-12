@@ -1,5 +1,6 @@
 from django.template.defaultfilters import truncatewords
 from django.db import models
+from ProjectWeb.managers import ProductActiveManager, ProductManager
 
 
 class ProductCategory(models.Model):
@@ -21,10 +22,13 @@ class Product(models.Model):
     category = models.ForeignKey(ProductCategory, blank=True, null=True, default=None, on_delete=models.CASCADE)
     # short_description = models.TextField(blank=True, null=True, default=None)
     description = models.TextField(blank=True, null=True, default=None)
-    is_active = models.BooleanField(default=True)
+    # is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     update = models.DateTimeField(auto_now_add=False, auto_now=True)
+    is_active = models.BooleanField(default=False, verbose_name="Активный товар?")
 
+    objects = ProductManager()
+    active = ProductActiveManager()
     # def short_description(self):
     #     return truncatewords(self.description, 50)
 
