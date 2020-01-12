@@ -27,9 +27,13 @@ def contact(request):
     return render(request, 'landing/contact.html', locals())
 
 
+# class ProductViewSet(viewsets.ModelViewSet):
+# #     """
+# #     API endpoint that allows users to be viewed or edited.
+# #     """
+# #     queryset = Product.objects.all()
+# #     serializer_class = ProductSerializer
+# #
 class ProductViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    queryset = Product.objects.all()
